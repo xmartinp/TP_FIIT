@@ -1,0 +1,46 @@
+EN:
+To use LTE in NS3:
+
+1. First it is needed to create LteHelper object,
+
+2. After that we have to create two types of nodes (Evolved Node B: eNB) and (UE: User Equipment) Where the eNB represent the tower and the UE represent the device that the user is using
+
+3. Configure the Mobility model for all the nodes
+
+4. Install an LTE protocol stack on the eNB by creating NetDeviceContainer object and use the lethelper to install the protocol
+
+5. Install an LTE protocol stack on the UEs using the same method as above
+
+6. Attach the UEs to an eNB This will configure each UE according to the eNB configuration and create an Radio Resource Control (RRC)connection between them
+
+7. Activate a data radio bearer between each UE and the eNB it is attached to, this bearer is called Eps, using ActivateDataRadioBearer method that will also activate two saturation traffic generators for that bearer, one in uplin and one in downlink.
+
+8. Set the stop time, This is needed otherwise the simulation will last forever,because (among others) the start-of-subframe event is scheduled repeatedly,and the ns-3 simulator scheduler will hence never run out of events.
+
+9. Run the simulation
+
+10. Cleanup and exit
+
+SK:
+Ak chcete použiť LTE v NS3:
+
+1. Najprv je potrebné vytvoriť objekt LteHelper,
+
+2. Potom musíme vytvoriť dva typy uzlov (Evolved Node B: eNB) a (UE: User Equipment), kde eNB predstavuje vežu a UE predstavuje zariadenie, ktoré používateľ používa.
+
+3. Nakonfigurujte model mobility pre všetky uzly
+
+4. Nainštalujte zásobník protokolov LTE na eNB vytvorením objektu NetDeviceContainer a na inštaláciu protokolu použite lethelper
+
+5. Nainštalujte zásobník LTE protokolov na UE pomocou rovnakej metódy ako vyššie
+
+6. Pripojte UE k eNB Týmto sa nakonfiguruje každé UE podľa konfigurácie eNB a vytvorí sa medzi nimi spojenie s riadením rádiových zdrojov (RRC).
+
+7. Aktivujte dátovú rádiovú nosnú medzi každým UE a eNB, ku ktorej je pripojená, táto nosná sa nazýva Eps, pomocou metódy ActivateDataRadioBearer, ktorá tiež aktivuje dva generátory saturačnej prevádzky pre túto nosnú, jeden v uplin a jeden v downlinku.
+
+8. Nastavte čas zastavenia. Toto je potrebné, inak bude simulácia trvať navždy, pretože (okrem iného) udalosť spustenia podrámca je naplánovaná opakovane a plánovaču simulátora ns-3 sa tak nikdy neminú udalosti.
+
+9. Spustite simuláciu
+
+10. Vyčistenie a odchod
+
