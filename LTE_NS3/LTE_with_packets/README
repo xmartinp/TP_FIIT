@@ -1,0 +1,54 @@
+EN:
+Steps of creating LTE Network:
+
+1. Setting up LTE Network:
+   - Create nodes and provide them to with the methods to add eNodeBs and UEs.
+   - Configure those nodes as a set of eNodes and another set of UEs.
+   - Install LTE protocol on top of them. Note. they are still empty nodes.
+   - Configure mobility model for all nodes by setting up the position of the nodes using the "SetPositionAllocator" method of the mobility model.
+   - Assign locations to the nodes in a shape of a grid inside the cell by declaring the number of required rows and columns in the grid, and by declaring the gap between any two consecutive nodes.
+   - Attach all UEs to one eNodeBs, By doing that we can configure each UE node in line with the configuration of the eNodeBs.
+   - Radio Resource Control (RRC) connection is established between each UE node and eNodeBs.
+2. Memic traffic in LTE Network:
+   - Activating data radio bearer between each UE node and the eNodeBs it is connected to, to know which region of the LTE network has the maximum amount of traffic.
+   - Two saturation traffic generators are being activated one for uplink communication and the second for downlink communication.
+   - In the example, we can see the generated traffic of the communication between UEs and eNodeBs in form of circles, the higher the density of concentric circles in a given region the higher the traffic in that region.
+3. Handover scenario:
+   - To tasks needs to be done to create this scenario:
+     1. get notified when a connection between the UE and the eNodesBs is established.
+     2. get notified when the handover of a UE node starts and when the handover ends
+   - Three functions were created for the purpose of doing those tasks.
+   - The handover starts when the UE node starts receiving signals of better signal strength from eNodeB other than the one which was being served.
+4. Testing:
+   - Delay(end-to-end mean delay)
+   - Throughput
+   - Packet loss ratio
+   - testing was done using the flow-monitor package in NS3 by installing a single flow monitor over all nodes in the network.
+
+SK:
+
+Kroky vytvorenia LTE siete:
+
+1. Nastavenie siete LTE:
+   - Vytvorte uzly a poskytnite im metódy na pridávanie eNodeB a UE.
+   - Nakonfigurujte tieto uzly ako sadu eNodes a ďalšiu sadu UE.
+   - Nainštalujte na ne protokol LTE. Poznámka. sú to stále prázdne uzly.
+   - Nakonfigurujte model mobility pre všetky uzly nastavením polohy uzlov pomocou metódy modelu mobility „SetPositionAllocator“.
+   - Priraďte miesta uzlom v tvare mriežky vo vnútri bunky deklarovaním počtu požadovaných riadkov a stĺpcov v mriežke a deklarovaním medzery medzi akýmikoľvek dvomi po sebe idúcimi uzlami.
+   - Pripojte všetky UE k jednému eNodeB. Týmto spôsobom môžeme nakonfigurovať každý uzol UE v súlade s konfiguráciou eNodeB.
+   - Medzi každým UE uzlom a eNodeB sa vytvorí spojenie s riadením rádiových prostriedkov (RRC).
+2. Memická prevádzka v sieti LTE:
+   - Aktivácia dátového rádiového nosiča medzi každým UE uzlom a eNodeB, ku ktorému je pripojený, aby sa vedelo, ktorá oblasť LTE siete má maximálny objem prevádzky.
+   - Aktivujú sa dva generátory saturačnej prevádzky, jeden pre uplinkovú komunikáciu a druhý pre downlinkovú komunikáciu.
+   - V príklade môžeme vidieť generovanú prevádzku komunikácie medzi UE a eNodeB vo forme kruhov, čím vyššia je hustota sústredných kruhov v danom regióne, tým vyššia je prevádzka v tomto regióne.
+3. Scenár odovzdania:
+   - Na vytvorenie tohto scenára je potrebné vykonať úlohy:
+     1. dostanete upozornenie, keď sa vytvorí spojenie medzi UE a eNodesB.
+     2. dostať upozornenie, keď sa začína odovzdávanie uzla UE a keď sa odovzdávanie končí
+   - Za účelom vykonávania týchto úloh boli vytvorené tri funkcie.
+   - Odovzdanie sa začne, keď uzol UE začne prijímať signály s lepšou silou signálu z iného eNodeB, ako je ten, ktorý bol obsluhovaný.
+4. Testovanie:
+   - Oneskorenie (stredné oneskorenie od začiatku do konca)
+   - Priepustnosť
+   - Pomer strát paketov
+   - testovanie bolo vykonané pomocou balíka monitorovania toku v NS3 inštaláciou jedného monitora toku na všetky uzly v sieti.
