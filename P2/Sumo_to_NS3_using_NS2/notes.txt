@@ -1,0 +1,14 @@
+to generate random trips using randomTrips.py generator in sumo we run the command
+python "path to sumo"/tools/randomTrips.py -n map.net.xml -r routes.rou.xml -o trips.xml -e 10 -p 2
+
+to generate the trace file we use the command
+sumo -c sim.sumocfg --fcd-output sumoTrace.xml
+
+sim.sumocfg can be created manually by adding the routes and the trips file from above
+
+then to generate tcl aka NS2 file we run the command
+
+python "path to sumo"/tools/traceExporter.py --fcd-input sumoTrace.xml --ns2mobility-output ns2mobility.tcl
+
+###################################################################
+sumo_ns3.cc is the main file that uses the custom soultiuon ns2-node-utility.cc to read the tcl and get the number of nodes and the time of entering the nodes so it can be used dynamically in NS3
