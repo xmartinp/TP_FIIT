@@ -39,6 +39,10 @@ void printCurrentPosition(Ptr<MobilityModel> mob){
     std::cout << "X: "<< x << " Y: "<< y << " Z: " << z << std::endl;
 }
 
+void printTime(){
+    std::cout << "a" << std::endl;
+}
+
 NS_LOG_COMPONENT_DEFINE("CustomLoggingExample");
 
 int main (int argc, char *argv[])
@@ -46,6 +50,7 @@ int main (int argc, char *argv[])
     LogComponentEnable("CustomLoggingExample", LOG_ALL);
     CommandLine cmd;
     cmd.Parse (argc, argv);
+
 
     ////////////////////////////////////////////////////////////////////////////////////
     //// Install mobility of the nodes using NS2 helper
@@ -66,8 +71,11 @@ int main (int argc, char *argv[])
     //// Install the required communication methods one by one
     ////////////////////////////////////////////////////////////////////////////////////
 
+    ////////////////////////////////////////////////////////////////////////////////////
+    //// Install AdHoc WiFi
+    ////////////////////////////////////////////////////////////////////////////////////
+
     /*
-    //WIFI Installation
     std::cout<<"vypis1\n";
     Packet::EnablePrinting ();
     PacketSocketHelper packetSocket;
@@ -124,14 +132,17 @@ int main (int argc, char *argv[])
     /////////////////////////////////////////////////////////////////////////////////
     /// Setup
 
+
+
     YansWifiChannelHelper waveChannel = YansWifiChannelHelper::Default ();
     YansWavePhyHelper wavePhy =  YansWavePhyHelper::Default ();
     wavePhy.SetChannel (waveChannel.Create ());
     wavePhy.SetPcapDataLinkType (WifiPhyHelper::DLT_IEEE802_11_RADIO); // set the pcap to radio which gives more info in the pcap file
 
+
     // these parameters devides the transmition to 7 levels
-    wavePhy.Set ("TxPowerStart", DoubleValue (8)); // min transmition power
-    wavePhy.Set ("TxPowerEnd", DoubleValue (33)); // max transmition power
+    wavePhy.Set ("TxPowerStart", DoubleValue (7)); // min transmition power
+    wavePhy.Set ("TxPowerEnd", DoubleValue (7)); // max transmition power
 
     QosWaveMacHelper waveMac = QosWaveMacHelper::Default (); // create MAC layer
     WaveHelper waveHelper = WaveHelper::Default ();
@@ -144,8 +155,9 @@ int main (int argc, char *argv[])
 
 
     NetDeviceContainer devices = waveHelper.Install (wavePhy, waveMac, nodes);
-    wavePhy.EnablePcap ("WaveTest", devices);
 
+    //wavePhy.EnablePcap ("WaveTest", devices);
+    wavePhy.EnablePcap ("WaveTest", devices);
     /////////////// End of setup ///////////////////////////////
 
     //prepare a packet with a payload of 1000 Bytes. Basically it has zeros in the payload
@@ -169,24 +181,45 @@ int main (int argc, char *argv[])
 
     tx.priority = 7;	//We set the AC to highest priority. We can set this per packet.
 
-    tx.txPowerLevel = 2; //When we define TxPowerStart & TxPowerEnd for a WifiPhy, 7 is correspond to TxPowerEnd, and 1 TxPowerStart, and numbers in between are levels.
+    tx.txPowerLevel = 6; //When we define TxPowerStart & TxPowerEnd for a WifiPhy, 7 is correspond to TxPowerEnd, and 1 TxPowerStart, and numbers in between are levels.
 
-    //Get the WaveNetDevice for the first devices, using node 0.
+/*
     Ptr <NetDevice> d0 = devices.Get (0);
     Ptr <WaveNetDevice> wd0 = DynamicCast <WaveNetDevice> (d0); // Dynamically cast to waveNetDevice
-    Simulator::Schedule ( Seconds (1) , &WaveNetDevice::SendX, wd0, packet, dest, protocol, tx); // destination of the packet is broadcast
+    Simulator::Schedule ( Seconds (sim_time-1) , &WaveNetDevice::SendX, wd0, packet, dest, protocol, tx); // destination of the packet is broadcast
+*/
+
+    //Get the WaveNetDevice for the first devices, using node 0.
+    //for (unsigned int i =0;i < nnodes; i++){
+ /*       Ptr <Packet> packet1 = Create <Packet> (1000);
+        Ptr <NetDevice> d0 = devices.Get (0);
+        Ptr <WaveNetDevice> wd0 = DynamicCast <WaveNetDevice> (d0);
+        Simulator::Schedule (Seconds (1) , &WaveNetDevice::SendX, wd0, packet1, dest, protocol, tx);
+*/
 
     //Let's send a Unicast packet from n0 to n2
     //Get the MAC address of the target node
+
+    Ptr <WaveNetDevice> d0 = DynamicCast<WaveNetDevice>(devices.Get(0));
+    Ptr <WaveNetDevice> d1 = DynamicCast<WaveNetDevice>(devices.Get(1));
     Ptr <WaveNetDevice> d2 = DynamicCast<WaveNetDevice>(devices.Get(2));
-    Mac48Address target_mac = Mac48Address::ConvertFrom (d2->GetAddress());
+    Ptr <WaveNetDevice> d3 = DynamicCast<WaveNetDevice>(devices.Get(3));
 
-    Ptr <Packet> unicast_packet = Create<Packet> (200);
     TxInfo tx_u;
+    std::cout << "SIM TIME JE : " << sim_time << std::endl;
 
-    Simulator::Schedule ( Seconds(sim_time-1) , &WaveNetDevice::SendX, wd0, unicast_packet, target_mac, protocol, tx_u );
+    for (int i = 1; i < sim_time - 1; i++){
+        Ptr <Packet> unicast_packet0 = Create<Packet> (200);
+        Ptr <Packet> unicast_packet1 = Create<Packet> (200);
+        Ptr <Packet> unicast_packet2 = Create<Packet> (200);
+        Ptr <Packet> unicast_packet3 = Create<Packet> (200);
 
-
+        Simulator::Schedule ( Seconds(i) , &printTime);
+        Simulator::Schedule ( Seconds(i) , &WaveNetDevice::SendX, d0, unicast_packet0, dest, protocol, tx_u );
+        Simulator::Schedule ( Seconds(i) , &WaveNetDevice::SendX, d1, unicast_packet1, dest, protocol, tx_u );
+        Simulator::Schedule ( Seconds(i) , &WaveNetDevice::SendX, d2, unicast_packet2, dest, protocol, tx_u );
+        Simulator::Schedule ( Seconds(i) , &WaveNetDevice::SendX, d3, unicast_packet3, dest, protocol, tx_u );
+    }
 
 
     ///////////////////////////////////////////////////////////
@@ -195,7 +228,11 @@ int main (int argc, char *argv[])
     athstats.EnableAthstats ("athstats-sta", nodes);
     Simulator::Stop(Seconds (sim_time));
     std::cout<<"vypis7\n";
-    //AnimationInterface anim ("filename.xml");
+    //AnimationInterface anim("filename.xml");
+
+
+
+
     Simulator::Run();
     std::cout<<"vypis8\n";
     Simulator::Destroy();
