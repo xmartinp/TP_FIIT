@@ -3,6 +3,7 @@
 #include "ns3/boolean.h"
 #include "ns3/string.h"
 #include "ns3/yans-wifi-helper.h"
+#include "ns3/double.h"
 #include "ns3/ssid.h"
 #include "ns3/mobility-helper.h"
 #include "ns3/on-off-helper.h"
@@ -41,8 +42,7 @@ static void AdvancePosition (Ptr<Node> node)
 
 int main (int argc, char *argv[])
 {
-  CommandLine cmd (FILE);
-  cmd.Parse (argc, argv);
+  
   std::cout<<"vypis1\n";
   Packet::EnablePrinting ();
   NodeContainer c;
@@ -50,8 +50,10 @@ int main (int argc, char *argv[])
   PacketSocketHelper packetSocket;
   packetSocket.Install(c);
 
-  YansWifiPhyHelper phy;
+  YansWifiPhyHelper phy = YansWifiPhyHelper::Default ();;
   YansWifiChannelHelper wifiChannel = YansWifiChannelHelper::Default();
+  wifiChannel.SetPropagationDelay("ns3::ConstantSpeedPropagationDelayModel");
+  wifiChannel.AddPropagationLoss("ns3::FriisPropagationLossModel", "MinLoss",DoubleValue(250));
   phy.SetChannel(wifiChannel.Create());
       std::cout<<"vypis2\n";
   WifiMacHelper mac;
