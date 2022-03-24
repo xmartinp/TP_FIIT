@@ -27,6 +27,8 @@
 #include "ns3/athstats-helper.h"
 #include "ns3/netanim-module.h"
 #include "ns3/wave-module.h"
+#include <vector>
+#include <limits>
 
 using namespace ns3;
 
@@ -39,6 +41,29 @@ void printCurrentPosition(Ptr<MobilityModel> mob){
     std::cout << "X: "<< x << " Y: "<< y << " Z: " << z << std::endl;
 }
 
+
+Ptr<NetDevice> findClosestNetDevice(Ptr<NetDevice> currentDevice, NetDeviceContainer possibleDevices){
+  double minimalDistanceFound = std::numeric_limits<double>::infinity();
+  Ptr<NetDevice> closestFoundDevice;
+  Vector currentDevicePosition = currentDevice->GetNode() -> GetObject<MobilityModel>() -> GetPosition();
+  double distance = 0;
+
+  for(NetDeviceContainer::Iterator i = possibleDevices.Begin(); i != possibleDevices.End(); ++i){
+      Vector position = (*i) -> GetNode() -> GetObject<MobilityModel>() -> GetPosition ();
+
+      distance = (currentDevicePosition - position).GetLength ();
+
+      if (distance < minimalDistanceFound)
+        {
+          minimalDistanceFound = distance;
+          closestFoundDevice = *i;
+        }
+  }
+
+  return closestFoundDevice;
+}
+
+
 void printTime(){
     std::cout << "a" << std::endl;
 }
@@ -50,7 +75,6 @@ int main (int argc, char *argv[])
     LogComponentEnable("CustomLoggingExample", LOG_ALL);
     CommandLine cmd;
     cmd.Parse (argc, argv);
-
 
     ////////////////////////////////////////////////////////////////////////////////////
     //// Install mobility of the nodes using NS2 helper
@@ -75,7 +99,8 @@ int main (int argc, char *argv[])
     //// Install AdHoc WiFi
     ////////////////////////////////////////////////////////////////////////////////////
 
-    /*
+
+
     std::cout<<"vypis1\n";
     Packet::EnablePrinting ();
     PacketSocketHelper packetSocket;
@@ -97,6 +122,7 @@ int main (int argc, char *argv[])
     wifiChannel.AddPropagationLoss ("ns3::FriisPropagationLossModel");
     wifiPhy.SetChannel (wifiChannel.Create ());
 
+
     // Add an upper mac and disable rate control
     WifiMacHelper wifiMac;
     wifi.SetStandard (WIFI_PHY_STANDARD_80211b);
@@ -106,6 +132,8 @@ int main (int argc, char *argv[])
     // Set it to adhoc mode
     wifiMac.SetType ("ns3::AdhocWifiMac");
     NetDeviceContainer devices = wifi.Install (wifiPhy, wifiMac, nodes);
+
+    wifiPhy.EnablePcap("MarekTestPcap", devices);
 
     std::cout<<"vypis3\n";
     //Toto nastaví udáje pre odosielatela packetov
@@ -124,13 +152,18 @@ int main (int argc, char *argv[])
     apps.Start (Seconds (0.5));
     apps.Stop (Seconds (70.0));
     std::cout<<"vypis6\n";
+    Ptr<NetDevice> d0 = devices.Get(0);
 
-     */
+
+    //Simulator::Schedule ( Seconds(1) , &findClosestNetDevice, d0, &devices);
+
+
 
     /////////////////////////////////////////////////////////////////////////////////
     /// WAVE
     /////////////////////////////////////////////////////////////////////////////////
     /// Setup
+    /*
 
 
 
@@ -158,8 +191,10 @@ int main (int argc, char *argv[])
 
     //wavePhy.EnablePcap ("WaveTest", devices);
     wavePhy.EnablePcap ("WaveTest", devices);
-    /////////////// End of setup ///////////////////////////////
 
+    */
+    /////////////// End of setup ///////////////////////////////
+    /*
     //prepare a packet with a payload of 1000 Bytes. Basically it has zeros in the payload
     Ptr <Packet> packet = Create <Packet> (1000);
 
@@ -182,7 +217,7 @@ int main (int argc, char *argv[])
     tx.priority = 7;	//We set the AC to highest priority. We can set this per packet.
 
     tx.txPowerLevel = 6; //When we define TxPowerStart & TxPowerEnd for a WifiPhy, 7 is correspond to TxPowerEnd, and 1 TxPowerStart, and numbers in between are levels.
-
+*/
 /*
     Ptr <NetDevice> d0 = devices.Get (0);
     Ptr <WaveNetDevice> wd0 = DynamicCast <WaveNetDevice> (d0); // Dynamically cast to waveNetDevice
@@ -199,7 +234,7 @@ int main (int argc, char *argv[])
 
     //Let's send a Unicast packet from n0 to n2
     //Get the MAC address of the target node
-
+/*
     Ptr <WaveNetDevice> d0 = DynamicCast<WaveNetDevice>(devices.Get(0));
     Ptr <WaveNetDevice> d1 = DynamicCast<WaveNetDevice>(devices.Get(1));
     Ptr <WaveNetDevice> d2 = DynamicCast<WaveNetDevice>(devices.Get(2));
@@ -221,7 +256,7 @@ int main (int argc, char *argv[])
         Simulator::Schedule ( Seconds(i) , &WaveNetDevice::SendX, d3, unicast_packet3, dest, protocol, tx_u );
     }
 
-
+    */
     ///////////////////////////////////////////////////////////
 
     AthstatsHelper athstats;
