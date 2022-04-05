@@ -1,3 +1,4 @@
+// Scenár s wifi štandardom 802.11p
 #include "ns3/wave-module.h"
 #include "ns3/wifi-module.h"
 #include "ns3/mobility-module.h"

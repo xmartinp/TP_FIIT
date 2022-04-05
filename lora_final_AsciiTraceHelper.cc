@@ -1,3 +1,4 @@
+//Lora scenar - funkčný na verzií 3.35, pre naše účely nepoužiteľný - vysvetlenie v dokumentácií
 #include "ns3/core-module.h"
  #include "ns3/network-module.h"
  #include "ns3/internet-module.h"
@@ -8,8 +9,6 @@
 #include "ns3/sixlowpan-module.h"
 #include "ns3/lr-wpan-module.h"
 #include "ns3/internet-apps-module.h"
-
-//Lora scenar - Martin, funkcny, z jiry prekopirovany
 
  using namespace ns3;
 

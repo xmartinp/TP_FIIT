@@ -1,3 +1,4 @@
+// Štandard wifi so statickými bodmi
 #include "ns3/command-line.h"
 #include "ns3/config.h"
 #include "ns3/boolean.h"

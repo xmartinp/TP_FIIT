@@ -1,3 +1,7 @@
+// Scenar s wifi prenosovou technologiou
+// Používa sa predvolený štandard wifi prenosu 802.11b
+// Scenár neobsahuje komunikáciu vozidiel
+
 #include "ns3/command-line.h"
 #include "ns3/config.h"
 #include "ns3/boolean.h"
