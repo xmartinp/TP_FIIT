@@ -23,6 +23,8 @@
 #include "ns3/yans-wifi-channel.h"
 #include "ns3/mobility-model.h"
 #include "ns3/packet-socket-helper.h"
+#include "ns3/packet-sink.h"
+#include "ns3/packet-sink-helper.h"
 #include "ns3/packet-socket-address.h"
 #include "ns3/athstats-helper.h"
 #include "ns3/netanim-module.h"
@@ -31,6 +33,8 @@
 #include <limits>
 
 using namespace ns3;
+
+// test
 
 // Custom function to print current position of the specified Node, to be used with Simulator::Schedule() function
 // Example usage: Simulator::Schedule(Seconds(0), &printCurrentPosition, nodes.Get(1)->GetObject<MobilityModel>());
@@ -47,10 +51,10 @@ Ptr<NetDevice> findClosestNetDevice(Ptr<NetDevice> currentDevice, NetDeviceConta
   Ptr<NetDevice> closestFoundDevice;
   Vector currentDevicePosition = currentDevice->GetNode() -> GetObject<MobilityModel>() -> GetPosition();
   double distance = 0;
-
+  
   for(NetDeviceContainer::Iterator i = possibleDevices.Begin(); i != possibleDevices.End(); ++i){
       Vector position = (*i) -> GetNode() -> GetObject<MobilityModel>() -> GetPosition ();
-
+      
       distance = (currentDevicePosition - position).GetLength ();
 
       if (distance < minimalDistanceFound)
@@ -67,6 +71,7 @@ Ptr<NetDevice> findClosestNetDevice(Ptr<NetDevice> currentDevice, NetDeviceConta
 void printTime(){
     std::cout << "a" << std::endl;
 }
+
 
 NS_LOG_COMPONENT_DEFINE("CustomLoggingExample");
 
@@ -99,7 +104,7 @@ int main (int argc, char *argv[])
     //// Install AdHoc WiFi
     ////////////////////////////////////////////////////////////////////////////////////
 
-
+    
 
     std::cout<<"vypis1\n";
     Packet::EnablePrinting ();
@@ -142,10 +147,22 @@ int main (int argc, char *argv[])
     socket.SetPhysicalAddress (devices.Get (0)->GetAddress ());
     socket.SetProtocol (1);
     std::cout<<"vypis4\n";
+
+    /* Packet Sink pokus
+    std::cout<<"Packet sink install:";
+    
+    Ptr<Node> testWifiNode = nodes.Get(1);
+    PacketSinkHelper sinkHelper ("ns3::TcpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), 9));
+    ApplicationContainer sinkApp = sinkHelper.Install (testWifiNode);
+    sinkHelper.Install (testWifiNode);
+    //sink = StaticCast<PacketSink> (sinkApp.Get (0));
+    */
+    
     // trieda na vytváranie komunikácie, trieda vytvára pakety
     OnOffHelper onoff ("ns3::PacketSocketFactory", Address (socket));
     onoff.SetConstantRate (DataRate ("500kb/s"));
-    //    onoff.SetAttribute("PacketSize", UintegerValue(2000));
+    onoff.SetAttribute("PacketSize", UintegerValue(2000));
+    //onoff.SetAttribute("PacketPayload", "asdasdasfasfsdfsdf");
     std::cout<<"vypis5\n";
     // nastavenie posielania paketov pomocou onoff.
     ApplicationContainer apps = onoff.Install (nodes.Get (0));
@@ -153,18 +170,18 @@ int main (int argc, char *argv[])
     apps.Stop (Seconds (70.0));
     std::cout<<"vypis6\n";
     Ptr<NetDevice> d0 = devices.Get(0);
-
-
+    
+    
     //Simulator::Schedule ( Seconds(1) , &findClosestNetDevice, d0, &devices);
 
-
+    
 
     /////////////////////////////////////////////////////////////////////////////////
     /// WAVE
     /////////////////////////////////////////////////////////////////////////////////
     /// Setup
     /*
-
+    
 
 
     YansWifiChannelHelper waveChannel = YansWifiChannelHelper::Default ();
