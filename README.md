@@ -10,10 +10,10 @@ Predovšetkým sa využíva nástroj NS-3 a jeho doplnky, nástroje SUMO, DOCKER
 Repozitár obsahuje nami testované scenáre pre jednotlivé technológie používané vo VANET sieťach radené tematicky do priečinkov. Zaradené sú taktiež scenáre, ktoré nemohli byť vo finálnej verzií použité, z dôvodov opísaných v dokumentácií projektu.
 
 ## Obsah repozitára - vetva main
-LTE_NS3 - scenáre s implementovanou LTE prenosovou technológiou
-P2 - finálny scenár s prenosovými technológiami Wi-Fi a 4G
-SDN - scenáre so sieťou SDN v rôznych topológiach
-Sumo_to_NS3_using_NS2 - zdrojové súbory pre konvertovanie dát z NS-2 do NS-3
+LTE_NS3 - scenáre s implementovanou LTE prenosovou technológiou<br>
+P2 - finálny scenár s prenosovými technológiami Wi-Fi a 4G<br>
+SDN - scenáre so sieťou SDN v rôznych topológiach<br>
+Sumo_to_NS3_using_NS2 - zdrojové súbory pre konvertovanie dát z NS-2 do NS-3<br>
 FunkcnaVerzia-ofswitch13-queue.cc.txt - súbor, ktorý podľa dokumentácie je potrebné zmeniť, aby SDN sieť bola funkčná na verzii 3.30
 
 
