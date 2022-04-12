@@ -18,13 +18,13 @@ FunkcnaVerzia-ofswitch13-queue.cc.txt - súbor, ktorý podľa dokumentácie je p
 
 
 ## Obsah repozitára - vetva backup
-Vetva slúži pre zálohovanie scenárov, ktoré viedli k finálneho scenáru.
-Flow Monitor - vysvetlený postup pre impelemntáciu funkcionality FlowMonitor
-LTE_NS3 - scenáre s implementovanou LTE prenosovou technológiou
-Sumo_to_NS3_using_NS2 - zdrojové súbory pre konvertovanie dát z NS-2 do NS-3
-TraceMetrics - obsahuje PDF tutoriál pre TraceMetrics a ukážkové súbory prenosov
-lora_final.cc - obsahuje scenár s implementáciou lora prenosovej technológie
-lora_final_AsciiTraceHelper - lora scenar v ktorom je implementovaný štandart testovania
-wave-test.cc - scenár s wavenet prenosovou technológiou
-wifi-adhoc.cc - scenár s wifi ako adhoc siet
-wifi_standard_with_static_AP.cc - scenár s wifi komunikáciou pri statickej topológií s AP
+Vetva slúži pre zálohovanie scenárov, ktoré viedli k finálneho scenáru.<br>
+Flow Monitor - vysvetlený postup pre impelemntáciu funkcionality FlowMonitor<br>
+LTE_NS3 - scenáre s implementovanou LTE prenosovou technológiou<br>
+Sumo_to_NS3_using_NS2 - zdrojové súbory pre konvertovanie dát z NS-2 do NS-3<br>
+TraceMetrics - obsahuje PDF tutoriál pre TraceMetrics a ukážkové súbory prenosov<br>
+lora_final.cc - obsahuje scenár s implementáciou lora prenosovej technológie<br>
+lora_final_AsciiTraceHelper - lora scenar v ktorom je implementovaný štandart testovania<br>
+wave-test.cc - scenár s wavenet prenosovou technológiou<br>
+wifi-adhoc.cc - scenár s wifi ako adhoc siet<br>
+wifi_standard_with_static_AP.cc - scenár s wifi komunikáciou pri statickej topológií s AP<br>
