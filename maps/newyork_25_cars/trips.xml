@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- generated on 2022-04-20 21:27:15.285150 by $Id$ v1_10_0+0000-83496a59725
+  options: -n map.net.xml -r routes.rou.xml -o trips.xml -e 50 -p 2
+-->
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+    <trip id="0" depart="0.00" from="20135825#3" to="-20135148#6"/>
+    <trip id="1" depart="2.00" from="-20148287#1" to="-20146678#3"/>
+    <trip id="2" depart="4.00" from="20146678#0" to="20139048#2"/>
+    <trip id="3" depart="6.00" from="20150742#9" to="-20135484#1"/>
+    <trip id="4" depart="8.00" from="-20153239#4" to="-20135148#7"/>
+    <trip id="5" depart="10.00" from="-20145383#2" to="20135148#6"/>
+    <trip id="6" depart="12.00" from="-20135148#5" to="-20145383#3"/>
+    <trip id="7" depart="14.00" from="20135825#5" to="20135387#10"/>
+    <trip id="8" depart="16.00" from="-20145383#2" to="20135484#2"/>
+    <trip id="9" depart="18.00" from="20148287#8" to="-20135148#1"/>
+    <trip id="10" depart="20.00" from="20148287#7" to="20141531#4"/>
+    <trip id="11" depart="22.00" from="-20149682#0" to="-20138559#1"/>
+    <trip id="12" depart="24.00" from="20155230#2" to="-20150742#1"/>
+    <trip id="13" depart="26.00" from="-20135484#0" to="-20135484#3"/>
+    <trip id="14" depart="28.00" from="20149682#3" to="20135484#5"/>
+    <trip id="15" depart="30.00" from="20148287#8" to="20146678#0"/>
+    <trip id="16" depart="32.00" from="20135148#7" to="676684194#0"/>
+    <trip id="17" depart="34.00" from="-20150742#4" to="20135387#3"/>
+    <trip id="18" depart="36.00" from="20149323#3" to="20135825#3"/>
+    <trip id="19" depart="38.00" from="20150742#2" to="20135387#9"/>
+    <trip id="20" depart="40.00" from="20141531#3" to="-20135387#1"/>
+    <trip id="21" depart="42.00" from="-20145383#4" to="-20148287#9"/>
+    <trip id="22" depart="44.00" from="-20135387#7" to="-20146678#5"/>
+    <trip id="23" depart="46.00" from="-20135484#2" to="-20148287#6"/>
+    <trip id="24" depart="48.00" from="20135825#2" to="-20150742#8"/>
+</routes>

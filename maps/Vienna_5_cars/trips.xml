@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- generated on 2022-04-20 21:18:19.291003 by $Id$ v1_10_0+0000-83496a59725
+  options: -n map.net.xml -r routes.rou.xml -o trips.xml -e 50 -p 2
+-->
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+    <trip id="0" depart="0.00" from="26581342" to="-116758237"/>
+    <trip id="1" depart="2.00" from="185127704" to="185127704"/>
+    <trip id="2" depart="4.00" from="31247112#0" to="32008719#0"/>
+    <trip id="3" depart="6.00" from="4997584#0" to="-26154331"/>
+    <trip id="4" depart="8.00" from="26154250" to="-116758237"/>
+    <trip id="5" depart="10.00" from="116758239#0" to="30692804#1"/>
+    <trip id="6" depart="12.00" from="-26158696" to="116758240"/>
+    <trip id="7" depart="14.00" from="26581342" to="31247112#0"/>
+    <trip id="8" depart="16.00" from="116758239#0" to="31247112#1"/>
+    <trip id="9" depart="18.00" from="344663251" to="-116758237"/>
+    <trip id="10" depart="20.00" from="32008719#0" to="32008719#1"/>
+    <trip id="11" depart="22.00" from="185127705" to="116758239#1"/>
+    <trip id="12" depart="24.00" from="662302258#0" to="26154479#0"/>
+    <trip id="13" depart="26.00" from="-4997584#1" to="-26154331"/>
+    <trip id="14" depart="28.00" from="344663253" to="31247112#1"/>
+    <trip id="15" depart="30.00" from="32008719#0" to="344663253"/>
+    <trip id="16" depart="32.00" from="26154479#0" to="75529655"/>
+    <trip id="17" depart="34.00" from="261458721" to="31247112#0"/>
+    <trip id="18" depart="36.00" from="344663251" to="32008717"/>
+    <trip id="19" depart="38.00" from="344663253" to="31247112#1"/>
+    <trip id="20" depart="40.00" from="30692804#1" to="-26154250"/>
+    <trip id="21" depart="42.00" from="116758239#0" to="261458721"/>
+    <trip id="22" depart="44.00" from="-4997584#1" to="185127704"/>
+    <trip id="23" depart="46.00" from="-4997584#1" to="185127705"/>
+    <trip id="24" depart="48.00" from="26581342" to="26154479#1"/>
+</routes>
